@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.tree import DecisionTreeRegressor
 
 
-melbourn_file_path = "./train.csv"
+melbourn_file_path = "./../train.csv"
 
 melbourn_data = pd.read_csv(melbourn_file_path)
 
