@@ -20,6 +20,5 @@ train_X, val_X, train_y, val_y = train_test_split(X,y, random_state=1)
 house_model = DecisionTreeRegressor(random_state=1)
 house_model.fit(train_X,train_y)
 
-val_predictions = house_model.predict(val_X
-                                      )
+val_predictions = house_model.predict(val_X)
 print(mean_absolute_error(val_predictions,val_y))
