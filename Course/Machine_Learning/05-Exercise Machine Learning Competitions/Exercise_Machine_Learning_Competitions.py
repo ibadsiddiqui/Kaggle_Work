@@ -6,6 +6,7 @@ Created on Thu Nov 21 13:13:15 2019
 """
 
 # Code you have previously used to load data
+import os
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error
@@ -49,3 +50,23 @@ rf_val_predictions = rf_model.predict(val_X)
 rf_val_mae = mean_absolute_error(rf_val_predictions, val_y)
 
 print("Validation MAE for Random Forest Model: {:,.0f}".format(rf_val_mae))
+
+
+# Testing the Random forest with new data
+
+# creating new model
+rf_model_on_full_data = RandomForestRegressor(random_state=1)
+rf_model_on_full_data.fit(X,y)
+
+test_data_file = '../test.csv'
+# read the test file
+test_data = pd.read_csv(test_data_file)
+test_X = test_data[features]
+
+# predictions for test data
+test_preds = rf_model_on_full_data.predict(test_X)
+output = pd.DataFrame({'Id': test_data.Id,
+                     'SalePrice': test_preds})
+output.to_csv('submission.csv', index=False)
+#print(test_preds)
+
